@@ -4,7 +4,7 @@ const tempElement = document.querySelector(".temperature-value p");
 const descElement = document.querySelector(".temperature-description p");
 const locationElement = document.querySelector(".location p");
 const notificationElement = document.querySelector(".notification");
-const search = document.getElementById('search');
+
 
 
 
@@ -69,25 +69,7 @@ function getWeather(latitude, longitude){
             displayWeather();
         });
 
-function getWeatherByCity(city){
-            let api = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`;
-            
-            fetch(api)
-                .then(function(response){
-                    let data = response.json();
-                    return data;
-                })
-                .then(function(data){
-                    weather.temperature.value = Math.floor(data.main.temp - KELVIN);
-                    weather.description = data.weather[0].description;
-                    weather.iconId = data.weather[0].icon;
-                    weather.city = data.name;
-                    weather.country = data.sys.country;
-                })
-                .then(function(){
-                    displayWeather();
-                });
-}
+
 // DISPLAY WEATHER TO UI
 function displayWeather(){
     iconElement.innerHTML = `<img src="icons/${weather.iconId}.png"/>`;
